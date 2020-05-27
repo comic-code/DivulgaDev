@@ -9,15 +9,25 @@ module.exports = {
 
         const techsArray = techs.split(',').map(tech => tech.trim());
         
-        const devs = await Dev.find({
-            techs: {
-                $in: techsArray,
-            },
-            state: {
-                $in: state,
-            }
         
-        });
+
+        if (state === undefined) {
+            var devs = await Dev.find({
+                techs: {
+                    $in: techsArray,
+                }
+            });
+        } else {
+            var devs = await Dev.find({
+                techs: {
+                    $in: techsArray,
+                },
+                state: {
+                    $in: state,
+                }
+            
+            });
+        }
 
         return res.json({ devs });
     }

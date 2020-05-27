@@ -6,9 +6,11 @@ import Home from './pages/Home';
 import FindDev from './pages/FindDev';
 import ShareDev from './pages/ShareDev';
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
+
   return(
         <NavigationContainer>
             <Stack.Navigator
