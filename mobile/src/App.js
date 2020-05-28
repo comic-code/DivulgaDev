@@ -5,7 +5,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 import Home from './pages/Home';
 import FindDev from './pages/FindDev';
 import ShareDev from './pages/ShareDev';
-
+import Profile from './pages/Profile';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +40,15 @@ export default function App() {
                 title: 'Encontre Desenvolvedores',
               }}
               />
+
+              <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{
+                title: 'Perfil no GitHub',
+              }}
+              />
+
             </Stack.Navigator>
         </NavigationContainer>
    );

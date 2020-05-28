@@ -5,7 +5,7 @@ import { Picker } from '@react-native-community/picker';
 
 import api from '../../services/api';
 
-export default function FindDev() {
+export default function FindDev({ navigation }) {
     const [techs, setTechs] = useState();
     const [country, setCountry] = useState();
     const [devs, setDevs] = useState([]);
@@ -42,7 +42,11 @@ export default function FindDev() {
 
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <Text style={styles.devName}>{dev.name}</Text>
-                            <TouchableOpacity style={styles.devSocial}>
+                            <TouchableOpacity
+                                style={styles.devSocial}
+                                onPress={() => {
+                                    navigation.navigate('Profile', { github_username: dev.github_username });
+                                }}>
                                 <Text style={{fontSize: 22}}>GitHub</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.devSocial}>
