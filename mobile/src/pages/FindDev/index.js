@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Picker } from '@react-native-community/picker';
@@ -62,7 +62,6 @@ export default function FindDev() {
                 <TextInput
                     style={styles.inputTechs}
                     placeholder="Tecnologia"
-                    placeholderTextColor="#999"
                     autoCapitalize="words" //Coloca a primeira letra de cada palavra em capslock
                     autoCorrect={false}
                     value={techs}
@@ -75,7 +74,6 @@ export default function FindDev() {
                     onValueChange={
                         (itemValue, itemIndex) => setCountry(itemValue)}
                     mode='dropdown'
-                    
                 >   
                     <Picker.Item label="Estado" value="" />
                     <Picker.Item label="Acre" value="AC" />

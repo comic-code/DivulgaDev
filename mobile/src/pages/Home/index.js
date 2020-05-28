@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, StatusBar } from 'react-native';
 
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/initialLogo.png';
 
 export default function Home({ navigation }) {
   return(

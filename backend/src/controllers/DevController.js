@@ -20,11 +20,11 @@ module.exports = {
     
         if (!dev) {
             const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
-            const { name = login, avatar_url, bio, html_url} = apiResponse.data;
+            const { name, avatar_url, bio, html_url} = apiResponse.data;
         
             // Separando tecnologias por vírgula e em seguida tirando espaços
-            const techsArray = techs.split(',').map(tech => tech.trim());
-        
+            const techsArray = techs.split(',').map(tech => tech.trim())
+            
             // Cadastrando dev no BD
             dev = await Dev.create({
                 email,
