@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native'
 import { Picker } from '@react-native-community/picker';
+import Modal from 'react-native-modal';
 
 import api from '../../services/api';
 
@@ -14,6 +15,8 @@ export default function ShareDev() {
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
 
+    const [visible, setVisible] = useState(false);
+
     async function share() {
         const response = await api.post('/devs', {
             email,
@@ -23,17 +26,41 @@ export default function ShareDev() {
             city
         });
         console.log(response.data);
-    }
+        setEmail(email => '');
+        setGithub_username(github_username => '');
+        setTechs(techs => '');
+        setCountry(country => '');
+        setCity(city => '');
 
+        setVisible(true);
+    }
 
     return(
         <View style={styles.container}>
 
-            <View>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <Image 
                     style={styles.shareLogo}
                     source={shareLogo}
                 />
+
+                <Modal
+                    isVisible={visible}
+                    onBackdropPress={()=>setVisible(false)}
+                    swipeDirection={['up', 'down']}
+                    onSwipeComplete={() => setVisible(false)}
+                >
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Dev divulgado com sucesso!</Text>
+                    
+                        <TouchableOpacity
+                            style={styles.modalBtn}
+                            onPress={() => setVisible(false)}
+                        >
+                            <Text style={styles.modalBtnText}>Fechar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
 
                 
                 <View style={styles.inputView}>
@@ -62,7 +89,7 @@ export default function ShareDev() {
 
                 <View>
                     <Text style={styles.text}>Tecnologias</Text> 
-                    <TextInput 
+                    <TextInput
                         style={styles.defaultInput}
                         placeholder="JavaScript, PHP, React"
                         autoCapitalize="words" //Coloca a primeira letra de cada palavra em capslock
@@ -122,7 +149,6 @@ export default function ShareDev() {
                         />
                     </View>
                 </View>
-            </View>
 
                 <TouchableOpacity
                     style={styles.btnShare}
@@ -132,6 +158,7 @@ export default function ShareDev() {
                 </TouchableOpacity>
 
             
+            </ScrollView>
         </View>
     )
 }
@@ -186,11 +213,39 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignSelf: 'center',
+        width: 150
     },
 
     btnText: {
         color: '#fff',
         fontSize: 20   
+    },
+
+    modalView: {
+        backgroundColor: '#042D59',
+        height: 120,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 15
+    },
+    
+    modalText: {
+        color: '#fff',
+        fontSize: 18
+    },
+
+    modalBtn: {
+        marginTop: 20,
+        padding: 10,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#fff'
+    },
+
+    modalBtnText: {
+        color: '#fff',
     }
+
 });
