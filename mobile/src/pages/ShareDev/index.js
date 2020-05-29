@@ -42,6 +42,7 @@ export default function ShareDev() {
                         style={styles.defaultInput}
                         placeholder="fulano@email.com"
                         autoCorrect={false}
+                        autoCapitalize='none'
                         value={email}
                         onChangeText={setEmail}
                     />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { Picker } from '@react-native-community/picker';
+import { openInbox, openComposer } from 'react-native-email-link';
 
 import api from '../../services/api';
 
@@ -9,8 +10,6 @@ export default function FindDev({ navigation }) {
     const [techs, setTechs] = useState();
     const [country, setCountry] = useState();
     const [devs, setDevs] = useState([]);
-
-    
 
     async function loadDevs() {
         const response = await api.get('/search', {
@@ -49,7 +48,19 @@ export default function FindDev({ navigation }) {
                                 }}>
                                 <Text style={{fontSize: 22}}>GitHub</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.devSocial}>
+                            <TouchableOpacity
+                                style={styles.devSocial}
+                                onPress={() => openInbox({
+                                    message: 'O que você quer fazer?',
+                                    cancelLabel: 'Voltar' 
+                                },
+                                openComposer({
+                                    to: dev.email,
+                                    subject: 'Olá, encontrei seu trabalho no DivulgaDev',
+                                    body: ''
+                                })
+                                )}
+                            >
                                 <Icon 
                                     name="mail"
                                     size={40}
