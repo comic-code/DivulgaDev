@@ -35,8 +35,7 @@ export default function FindDev({ navigation }) {
                                 style={styles.devImage}
                                 source={{uri: dev.avatar_url}}
                             />
-                            <Text style={styles.devCity}><Icon name="map-pin"/> {dev.city}</Text>
-                            <Text style={styles.devCity}>{dev.state}</Text>
+                            <Text style={styles.devCity}><Icon name="map-pin" size={10}/> {dev.city} - {dev.state}</Text>
                         </View>
 
                         <View style={{flex: 1, alignItems: 'center'}}>
@@ -46,7 +45,11 @@ export default function FindDev({ navigation }) {
                                 onPress={() => {
                                     navigation.navigate('Profile', { github_username: dev.github_username });
                                 }}>
-                                <Text style={{fontSize: 22}}>GitHub</Text>
+                                    <Text style={{color: '#042D59', fontWeight: 'bold'}}><Icon
+                                        name="github"
+                                        size={20}
+                                    />GitHub</Text>    
+                                    
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.devSocial}
@@ -63,7 +66,7 @@ export default function FindDev({ navigation }) {
                             >
                                 <Icon 
                                     name="mail"
-                                    size={40}
+                                    size={30}
                                     color="#042D59"
                                 />
                             </TouchableOpacity>
@@ -156,8 +159,10 @@ const styles = StyleSheet.create({
     },  
 
     devImage: {
-        height: 80,
-        width: 80,
+        height: 90,
+        width: 90,
+        marginTop: 5,
+        marginLeft: 5,
         borderRadius: 10,
         marginBottom: 5
     },
@@ -166,6 +171,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         textAlign: 'center',
+        color: '#042D59'
     },
 
     devSocial: {
@@ -175,14 +181,16 @@ const styles = StyleSheet.create({
         padding: 20,
         height: 40,
         borderWidth: 2,
-        borderRadius: 10,
+        borderRadius: 15,
+        borderColor: '#042D59',
         width: 150
     },
 
     devCity: {
-        color: '#666',
+        color: '#042D59',
         fontWeight: 'bold',
-        marginLeft: 3
+        fontSize: 12,
+        marginLeft: 5
     },
 
     searchForm: {

@@ -15,9 +15,56 @@ export default function ShareDev() {
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
 
+    const [validate, setValidate] = useState(false)
+
     const [visible, setVisible] = useState(false);
+    const [visible2, setVisible2] = useState(false);
+    const [visible3, setVisible3] = useState(false);
+
+    function validateEmail() {
+        // Verificando @
+        if (email.indexOf('@') === -1) {
+            setVisible3(true);
+            setValidate(false);
+        } else {
+            setValidate(true);
+        }
+
+        // Separando
+        let user = email.substring(0, email.indexOf("@"));
+        let domain = email.substring(email.indexOf("@")+ 1, email.length);
+        
+        // Validando
+        if ((user.length >=1) &&
+            (domain.length >=3) && 
+            (user.search('@')==-1) && 
+            (domain.search('@')==-1) &&
+            (user.search(' ')==-1) && 
+            (domain.search(' ')==-1) &&
+            (domain.search('.')!=-1) &&      
+            (domain.indexOf('.') >=1)&& 
+            (domain.lastIndexOf('.') < domain.length - 1)) {
+                setValidate(true);
+        } else {
+            setVisible3(true);
+            setValidate(false);
+        }
+
+    }
 
     async function share() {
+    
+
+        if(email == '' || github_username == '' || techs == '' || country == '' || city == '' ) {
+            setVisible2(true);
+            return
+        }
+
+        if(validate == false) {
+            setVisible3(true);
+            return
+        }
+
         const response = await api.post('/devs', {
             email,
             github_username,
@@ -62,6 +109,41 @@ export default function ShareDev() {
                     </View>
                 </Modal>
 
+                <Modal
+                    isVisible={visible2}
+                    onBackdropPress={()=>setVisible2(false)}
+                    swipeDirection={['up', 'down']}
+                    onSwipeComplete={() => setVisible2(false)}
+                >
+                    <View style={styles.modalView2}>
+                        <Text style={styles.modalText2}>Por favor, preencha todos os campos corretamente.</Text>
+                    
+                        <TouchableOpacity
+                            style={styles.modalBtn2}
+                            onPress={() => setVisible2(false)}
+                        >
+                            <Text style={styles.modalBtnText}>Fechar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+
+                <Modal
+                    isVisible={visible3}
+                    onBackdropPress={()=>setVisible3(false)}
+                    swipeDirection={['up', 'down']}
+                    onSwipeComplete={() => setVisible3(false)}
+                >
+                    <View style={styles.modalView2}>
+                        <Text style={styles.modalText}>Por favor, digite um email válido.</Text>
+                    
+                        <TouchableOpacity
+                            style={styles.modalBtn2}
+                            onPress={() => setVisible3(false)}
+                        >
+                            <Text style={styles.modalBtnText}>Fechar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
                 
                 <View style={styles.inputView}>
                     <Text style={styles.text}>E-mail</Text> 
@@ -72,6 +154,8 @@ export default function ShareDev() {
                         autoCapitalize='none'
                         value={email}
                         onChangeText={setEmail}
+                        onBlur={validateEmail}
+                        
                     />
                 </View>
 
@@ -230,14 +314,37 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 15
     },
+
+    modalView2: {
+        backgroundColor: '#59140F',
+        height: 130,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 15
+    },
     
     modalText: {
         color: '#fff',
-        fontSize: 18
+        fontSize: 18,
+        textAlign: 'center'
+    },
+
+    modalText2: {
+        color: '#fff',
+        fontSize: 17,
+        textAlign: 'center'
     },
 
     modalBtn: {
         marginTop: 20,
+        padding: 10,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: '#fff'
+    },
+
+    modalBtn2: {
+        marginTop: 15,
         padding: 10,
         borderRadius: 15,
         borderWidth: 1,
