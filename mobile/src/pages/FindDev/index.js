@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import { Picker } from '@react-native-community/picker';
 import { openInbox, openComposer } from 'react-native-email-link';
 
+import FindLogo from '../../assets/findLogo.png';
+
 import api from '../../services/api';
 
 export default function FindDev({ navigation }) {
@@ -25,10 +27,16 @@ export default function FindDev({ navigation }) {
     
 
     return(
-        <View style={styles.container}>
-            
+        <View style={styles.container}> 
            <ScrollView>
-                {devs.map(dev => (
+
+                {devs == '' ?
+                    <View style={styles.initialView}>      
+                        <Image style={styles.initialImage} source={FindLogo} />          
+                        <Text style={styles.initialText}>As buscas podem ser feitas por Tecnologia e Estado, ou apenas por Tecnologia</Text>
+                    </View> : 
+                    
+                    devs.map(dev => (
                     <View style={styles.cardDev} key={dev._id}>
                         <View style={{flex: 0.5}}>
                             <Image
@@ -74,6 +82,10 @@ export default function FindDev({ navigation }) {
                         </View>
                     </View>
                 ))}
+            
+                
+
+                {}
             </ScrollView>
         
             <View style={styles.searchForm}>
@@ -85,43 +97,44 @@ export default function FindDev({ navigation }) {
                     value={techs}
                     onChangeText={setTechs}
                 />
-
-                <Picker
-                    style={styles.inputCountry}
-                    selectedValue={country}
-                    onValueChange={
-                        (itemValue, itemIndex) => setCountry(itemValue)}
-                    mode='dropdown'
-                >   
-                    <Picker.Item label="Estado" value="" />
-                    <Picker.Item label="Acre" value="AC" />
-                    <Picker.Item label="Alagoas" value="AL" />
-                    <Picker.Item label="Amapá" value="AP" />
-                    <Picker.Item label="Amazonas" value="AM" />
-                    <Picker.Item label="Bahia" value="BA" />
-                    <Picker.Item label="Ceará" value="CE" />
-                    <Picker.Item label="Distrito Federal" value="DF" />
-                    <Picker.Item label="Espírito Santo" value="ES" />
-                    <Picker.Item label="Goiás" value="GO" />
-                    <Picker.Item label="Maranhão" value="MA" />
-                    <Picker.Item label="Mato Grosso" value="MT" />
-                    <Picker.Item label="Mato Grosso do Sul" value="MS" />
-                    <Picker.Item label="Minas Gerais" value="MG" />
-                    <Picker.Item label="Pará" value="PA" />
-                    <Picker.Item label="Paraíba" value="PB" />
-                    <Picker.Item label="Paraná" value="PR" />
-                    <Picker.Item label="Pernambuco" value="PE" />
-                    <Picker.Item label="Piauí" value="PI" />
-                    <Picker.Item label="Rio de Janeiro" value="RJ" />
-                    <Picker.Item label="Rio Grande do Norte" value="RN" />
-                    <Picker.Item label="Rio Grande do Sul" value="RS" />
-                    <Picker.Item label="Rondônia" value="RO" />
-                    <Picker.Item label="Roraima" value="RR" />
-                    <Picker.Item label="Santa Catarina" value="SC" />
-                    <Picker.Item label="São Paulo" value="SP" />
-                    <Picker.Item label="Sergipe" value="SE" />
-                    <Picker.Item label="Tocantins" value="TO" />
-                </Picker>
+                <View style={styles.inputCountry}>
+                    <Picker
+                        selectedValue={country}
+                        onValueChange={
+                            (itemValue, itemIndex) => setCountry(itemValue)}
+                        mode='dropdown'
+                    >   
+                        <Picker.Item color='#666' label="Estado" value={undefined} />
+                        <Picker.Item label="Acre" value="AC" />
+                        <Picker.Item label="Alagoas" value="AL" />
+                        <Picker.Item label="Amapá" value="AP" />
+                        <Picker.Item label="Amazonas" value="AM" />
+                        <Picker.Item label="Bahia" value="BA" />
+                        <Picker.Item label="Ceará" value="CE" />
+                        <Picker.Item label="Distrito Federal" value="DF" />
+                        <Picker.Item label="Espírito Santo" value="ES" />
+                        <Picker.Item label="Goiás" value="GO" />
+                        <Picker.Item label="Maranhão" value="MA" />
+                        <Picker.Item label="Mato Grosso" value="MT" />
+                        <Picker.Item label="Mato Grosso do Sul" value="MS" />
+                        <Picker.Item label="Minas Gerais" value="MG" />
+                        <Picker.Item label="Pará" value="PA" />
+                        <Picker.Item label="Paraíba" value="PB" />
+                        <Picker.Item label="Paraná" value="PR" />
+                        <Picker.Item label="Pernambuco" value="PE" />
+                        <Picker.Item label="Piauí" value="PI" />
+                        <Picker.Item label="Rio de Janeiro" value="RJ" />
+                        <Picker.Item label="Rio Grande do Norte" value="RN" />
+                        <Picker.Item label="Rio Grande do Sul" value="RS" />
+                        <Picker.Item label="Rondônia" value="RO" />
+                        <Picker.Item label="Roraima" value="RR" />
+                        <Picker.Item label="Santa Catarina" value="SC" />
+                        <Picker.Item label="São Paulo" value="SP" />
+                        <Picker.Item label="Sergipe" value="SE" />
+                        <Picker.Item label="Tocantins" value="TO" />
+                    </Picker>
+                </View>
+                
                 <TouchableOpacity style={styles.searchButton} onPress={ loadDevs } >
                     <Icon 
                         name="search"
@@ -132,9 +145,6 @@ export default function FindDev({ navigation }) {
             </View>
         </View>
     )
-
-    
-
 }
 const styles = StyleSheet.create({
 
@@ -144,8 +154,26 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
 
-    viewDevs: {
+    initialView: {
+        marginTop: 36,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
+
+    initialImage: {
+        width: 200,
+        height: 200
+    },
+
+    initialText: {
+        fontSize: 20,
+        color: '#021A33',
+        textAlign: 'center',
+        marginHorizontal: 10,
+        fontWeight: "900"
+    },  
+
+
 
     cardDev: {
         flexDirection: 'row',
@@ -219,7 +247,8 @@ const styles = StyleSheet.create({
 
     inputCountry: {
         flex: 1,
-        marginHorizontal: 1,
+        marginLeft: 1,
+        marginRight: 2,
         backgroundColor: '#fff'
     },
 
