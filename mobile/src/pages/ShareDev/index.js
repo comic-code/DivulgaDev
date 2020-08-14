@@ -85,12 +85,13 @@ export default function ShareDev() {
     return(
         <View style={styles.container}>
 
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Image 
-                    style={styles.shareLogo}
-                    source={shareLogo}
-                />
-
+            <ScrollView contentContainerStyle={{alignItems: 'center'}} showsVerticalScrollIndicator={false}>
+                <View style={styles.containerLogo}>
+                    <Image 
+                        style={styles.shareLogo}
+                        source={shareLogo}
+                    />
+                </View>
                 <Modal
                     isVisible={visible}
                     onBackdropPress={()=>setVisible(false)}
@@ -146,102 +147,102 @@ export default function ShareDev() {
                 </Modal>
                 
                 <View style={styles.inputView}>
-                    <Text style={styles.text}>E-mail</Text> 
-                    <TextInput 
-                        style={styles.defaultInput}
-                        placeholder="fulano@email.com"
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        value={email}
-                        onChangeText={setEmail}
-                        onBlur={validateEmail}
-                        
-                    />
-                </View>
-
-                <View>
-                    <Text style={styles.text}>GitHub.com/</Text> 
-                    <TextInput 
-                        style={styles.defaultInput}
-                        placeholder="devlogin"
-                        autoCorrect={false}
-                        autoCapitalize='none'
-                        value={github_username}
-                        onChangeText={setGithub_username}
-                    />
-                </View>
-
-                <View>
-                    <Text style={styles.text}>Tecnologias</Text> 
-                    <TextInput
-                        style={styles.defaultInput}
-                        placeholder="JavaScript, PHP, React"
-                        autoCapitalize="words" //Coloca a primeira letra de cada palavra em capslock
-                        autoCorrect={false}
-                        value={techs}
-                        onChangeText={setTechs}
-                    />
-                </View>
-
-                <View style={{flexDirection: "row"}}>
                     <View>
-                        <Text style={styles.text}>Estado</Text> 
-                        <View style={styles.countryInput}>
-                        <Picker
-                        mode="dropdown"
-                        selectedValue={country}
-                        onValueChange={
-                        (itemValue, itemIndex) => setCountry(itemValue)}
-                        >
-                            <Picker.Item label="" value="" />
-                            <Picker.Item label="Acre" value="AC" />
-                            <Picker.Item label="Alagoas" value="AL" />
-                            <Picker.Item label="Amapá" value="AP" />
-                            <Picker.Item label="Amazonas" value="AM" />
-                            <Picker.Item label="Bahia" value="BA" />
-                            <Picker.Item label="Ceará" value="CE" />
-                            <Picker.Item label="Distrito Federal" value="DF" />
-                            <Picker.Item label="Espírito Santo" value="ES" />
-                            <Picker.Item label="Goiás" value="GO" />
-                            <Picker.Item label="Maranhão" value="MA" />
-                            <Picker.Item label="Mato Grosso" value="MT" />
-                            <Picker.Item label="Mato Grosso do Sul" value="MS" />
-                            <Picker.Item label="Minas Gerais" value="MG" />
-                            <Picker.Item label="Pará" value="PA" />
-                            <Picker.Item label="Paraíba" value="PB" />
-                            <Picker.Item label="Paraná" value="PR" />
-                            <Picker.Item label="Pernambuco" value="PE" />
-                            <Picker.Item label="Piauí" value="PI" />
-                            <Picker.Item label="Rio de Janeiro" value="RJ" />
-                            <Picker.Item label="Rio Grande do Norte" value="RN" />
-                            <Picker.Item label="Rio Grande do Sul" value="RS" />
-                            <Picker.Item label="Rondônia" value="RO" />
-                            <Picker.Item label="Roraima" value="RR" />
-                            <Picker.Item label="Santa Catarina" value="SC" />
-                            <Picker.Item label="São Paulo" value="SP" />
-                            <Picker.Item label="Sergipe" value="SE" />
-                            <Picker.Item label="Tocantins" value="TO" />
-                        </Picker>
-                        </View>
-                    </View>
-                    <View style={{marginLeft: 15}}>
-                        <Text style={styles.text}>Cidade</Text> 
+                        <Text style={styles.text}>E-mail</Text> 
                         <TextInput 
-                            style={styles.cityInput}
-                            value={city}
-                            onChangeText={setCity}
+                            style={styles.defaultInput}
+                            placeholder="fulano@email.com"
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            value={email}
+                            onChangeText={setEmail}
+                            onBlur={validateEmail}
+                            
                         />
                     </View>
+
+                    <View>
+                        <Text style={styles.text}>GitHub.com/</Text> 
+                        <TextInput 
+                            style={styles.defaultInput}
+                            placeholder="devlogin"
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            value={github_username}
+                            onChangeText={setGithub_username}
+                        />
+                    </View>
+
+                    <View>
+                        <Text style={styles.text}>Tecnologias</Text> 
+                        <TextInput
+                            style={styles.defaultInput}
+                            placeholder="JavaScript, PHP, React"
+                            autoCapitalize="words" //Coloca a primeira letra de cada palavra em capslock
+                            autoCorrect={false}
+                            value={techs}
+                            onChangeText={setTechs}
+                        />
+                    </View>
+
+                    <View style={{flexDirection: "row"}}>
+                        <View>
+                            <Text style={styles.text}>Estado</Text> 
+                            <View style={styles.countryInput}>
+                            <Picker
+                            mode="dropdown"
+                            selectedValue={country}
+                            onValueChange={
+                            (itemValue, itemIndex) => setCountry(itemValue)}
+                            >
+                                <Picker.Item label="" value="" />
+                                <Picker.Item label="Acre" value="AC" />
+                                <Picker.Item label="Alagoas" value="AL" />
+                                <Picker.Item label="Amapá" value="AP" />
+                                <Picker.Item label="Amazonas" value="AM" />
+                                <Picker.Item label="Bahia" value="BA" />
+                                <Picker.Item label="Ceará" value="CE" />
+                                <Picker.Item label="Distrito Federal" value="DF" />
+                                <Picker.Item label="Espírito Santo" value="ES" />
+                                <Picker.Item label="Goiás" value="GO" />
+                                <Picker.Item label="Maranhão" value="MA" />
+                                <Picker.Item label="Mato Grosso" value="MT" />
+                                <Picker.Item label="Mato Grosso do Sul" value="MS" />
+                                <Picker.Item label="Minas Gerais" value="MG" />
+                                <Picker.Item label="Pará" value="PA" />
+                                <Picker.Item label="Paraíba" value="PB" />
+                                <Picker.Item label="Paraná" value="PR" />
+                                <Picker.Item label="Pernambuco" value="PE" />
+                                <Picker.Item label="Piauí" value="PI" />
+                                <Picker.Item label="Rio de Janeiro" value="RJ" />
+                                <Picker.Item label="Rio Grande do Norte" value="RN" />
+                                <Picker.Item label="Rio Grande do Sul" value="RS" />
+                                <Picker.Item label="Rondônia" value="RO" />
+                                <Picker.Item label="Roraima" value="RR" />
+                                <Picker.Item label="Santa Catarina" value="SC" />
+                                <Picker.Item label="São Paulo" value="SP" />
+                                <Picker.Item label="Sergipe" value="SE" />
+                                <Picker.Item label="Tocantins" value="TO" />
+                            </Picker>
+                            </View>
+                        </View>
+                        <View style={{marginLeft: 15}}>
+                            <Text style={styles.text}>Cidade</Text> 
+                            <TextInput 
+                                style={styles.cityInput}
+                                value={city}
+                                onChangeText={setCity}
+                            />
+                        </View>
+                    </View>
+
+                    <TouchableOpacity
+                        style={styles.btnShare}
+                        onPress={ share }
+                    >
+                        <Text style={styles.btnText}>Divulgar</Text>
+                    </TouchableOpacity>
                 </View>
-
-                <TouchableOpacity
-                    style={styles.btnShare}
-                    onPress={ share }
-                >
-                    <Text style={styles.btnText}>Divulgar</Text>
-                </TouchableOpacity>
-
-            
             </ScrollView>
         </View>
     )
@@ -251,9 +252,16 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        alignItems: 'center',    
         backgroundColor: '#042D59',
-        alignItems: 'center',
     },
+
+    containerLogo: {
+        minWidth: '100%',
+        alignItems: 'center',
+        paddingBottom: 60,
+        backgroundColor: '#0A3F73'
+    },  
     
     shareLogo: {
         width: 240,
@@ -261,23 +269,33 @@ const styles = StyleSheet.create({
         marginVertical: 20
     },  
 
+    inputView: {
+        borderTopRightRadius: 25,
+        borderTopLeftRadius: 25,
+        width: '100%',
+        top: -50,
+        paddingTop: 30,
+        alignItems: 'center',
+        backgroundColor: '#042D59'
+    },
+
     text: {
         color: '#fff',  
-        marginLeft: 10,
+        marginLeft: 5,
         marginTop: 15
     },
 
     defaultInput: {
         backgroundColor: '#fff',
-        borderRadius: 15,
+        borderRadius: 10,
         paddingHorizontal: 10,
-        width: 240
-        
+        width: 240,
+        marginTop: 5
     },
 
     countryInput: {
         backgroundColor: '#fff',
-        borderRadius: 15,
+        borderRadius: 10,
         paddingRight: 0,
         width: 110,
         fontSize: 2
@@ -285,7 +303,7 @@ const styles = StyleSheet.create({
 
     cityInput: {
         backgroundColor: '#fff',
-        borderRadius: 15,
+        borderRadius: 10,
         width: 115,
         paddingHorizontal: 10
     },
@@ -293,9 +311,10 @@ const styles = StyleSheet.create({
     btnShare: {
         marginTop: 40,
         borderWidth: 1,
-        borderColor: '#fff',
-        borderRadius: 15,
         padding: 15,
+        borderColor: '#fafafa',
+        backgroundColor: '#0A3F73',
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
@@ -312,7 +331,7 @@ const styles = StyleSheet.create({
         height: 120,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 15
+        borderRadius: 10
     },
 
     modalView2: {
@@ -320,7 +339,7 @@ const styles = StyleSheet.create({
         height: 130,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 15
+        borderRadius: 10
     },
     
     modalText: {
@@ -338,7 +357,7 @@ const styles = StyleSheet.create({
     modalBtn: {
         marginTop: 20,
         padding: 10,
-        borderRadius: 15,
+        borderRadius: 10,
         borderWidth: 1,
         borderColor: '#fff'
     },
@@ -346,7 +365,7 @@ const styles = StyleSheet.create({
     modalBtn2: {
         marginTop: 15,
         padding: 10,
-        borderRadius: 15,
+        borderRadius: 10,
         borderWidth: 1,
         borderColor: '#fff'
     },

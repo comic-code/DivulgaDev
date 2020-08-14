@@ -8,21 +8,24 @@ export default function Home({ navigation }) {
     <>
       <View style={styles.container}>
         <StatusBar backgroundColor='#032040'/>
-        <Image style={styles.logo} source={Logo}/>
         
+        <View style={styles.containerLogo}>
+          <Image style={styles.logo} source={Logo}/>
+        </View>
+
         <View style={styles.viewBtn}>
           <TouchableOpacity
             style={styles.btn}
             onPress={ () => navigation.navigate('ShareDev')}
             >
-            <Text style={styles.btnText}>Divulgue seu trabalho</Text>
+            <Text style={styles.btnText}>Divulgue Seu Trabalho</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.btn}
             onPress={ () => navigation.navigate('FindDev')}
             >
-            <Text style={styles.btnText}>Encontre devs</Text>
+            <Text style={styles.btnText}>Encontre Desenvolvedores</Text>
           </TouchableOpacity>
         </View>
 
@@ -42,10 +45,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
 
+  containerLogo: {
+    marginTop: 100,
+    backgroundColor: '#0A3F73',
+    borderRadius: 500,
+    height: 200,
+    width: 200,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
   logo: { 
     width: 300,
     height: 200,
-    marginTop: 100
   },
   
   viewBtn: {
@@ -54,12 +66,13 @@ const styles = StyleSheet.create({
 
   btn: {
     width: 300,
-    padding: 10,
+    padding: 15,
     marginBottom: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 25   
+    borderColor: '#fafafa',
+    backgroundColor: '#0A3F73',
+    borderRadius: 10   
   },
 
   btnText: {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import IconMail from 'react-native-vector-icons/Fontisto'
 import { Picker } from '@react-native-community/picker';
 import { openInbox, openComposer } from 'react-native-email-link';
 
@@ -28,7 +29,7 @@ export default function FindDev({ navigation }) {
 
     return(
         <View style={styles.container}> 
-           <ScrollView>
+           <ScrollView contentContainerStyle={{paddingBottom: 20}}>
 
                 {devs == '' ?
                     <View style={styles.initialView}>      
@@ -53,7 +54,7 @@ export default function FindDev({ navigation }) {
                                 onPress={() => {
                                     navigation.navigate('Profile', { github_username: dev.github_username });
                                 }}>
-                                    <Text style={{color: '#042D59', fontWeight: 'bold'}}><Icon
+                                    <Text style={{color: '#fafafa', fontWeight: 'bold'}}><Icon
                                         name="github"
                                         size={20}
                                     />GitHub</Text>    
@@ -72,10 +73,10 @@ export default function FindDev({ navigation }) {
                                 })
                                 )}
                             >
-                                <Icon 
-                                    name="mail"
+                                <IconMail
+                                    name="email"
                                     size={30}
-                                    color="#042D59"
+                                    color="#fafafa"
                                 />
                             </TouchableOpacity>
                         
@@ -83,9 +84,6 @@ export default function FindDev({ navigation }) {
                     </View>
                 ))}
             
-                
-
-                {}
             </ScrollView>
         
             <View style={styles.searchForm}>
@@ -155,7 +153,7 @@ const styles = StyleSheet.create({
     },
 
     initialView: {
-        marginTop: 36,
+        marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -167,13 +165,11 @@ const styles = StyleSheet.create({
 
     initialText: {
         fontSize: 20,
-        color: '#021A33',
+        color: '#fafafa',
         textAlign: 'center',
         marginHorizontal: 10,
         fontWeight: "900"
     },  
-
-
 
     cardDev: {
         flexDirection: 'row',
@@ -181,9 +177,12 @@ const styles = StyleSheet.create({
         marginTop: 20,
         height: 150,
         width: 360,
-        borderRadius: 15,
-        backgroundColor: '#fff',
-        padding: 10
+        borderRadius: 10,
+        backgroundColor: '#0A3F73',
+        borderWidth: 1,
+        borderColor: '#fafafa',
+        padding: 10,
+        elevation: 5
     },  
 
     devImage: {
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#042D59'
+        color: '#fafafa'
     },
 
     devSocial: {
@@ -208,14 +207,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
         height: 40,
-        borderWidth: 2,
-        borderRadius: 15,
-        borderColor: '#042D59',
+        borderWidth: 1.3,
+        borderRadius: 10,
+        borderColor: '#fafafa',
         width: 150
     },
 
     devCity: {
-        color: '#042D59',
+        color: '#fafafa',
         fontWeight: 'bold',
         fontSize: 12,
         marginLeft: 5
@@ -223,17 +222,19 @@ const styles = StyleSheet.create({
 
     searchForm: {
         flexDirection: 'row',
-        marginVertical: 15,
-        marginHorizontal: 15
+        borderTopWidth: 1,
+        borderTopColor: '#fafafa',
+        paddingVertical: 15,
+        marginHorizontal: 20
     },
 
     inputTechs: {
         flex: 1,
-        paddingHorizontal: 30,
+        paddingHorizontal: 13,
         fontSize: 16,
-        backgroundColor: '#fff',
-        borderTopLeftRadius: 25,
-        borderBottomLeftRadius: 25,
+        backgroundColor: '#fafafa',
+        borderTopLeftRadius: 15,
+        borderBottomLeftRadius: 15,
         //IOS
         shadowColor: '#000',
         shadowOpacity: 0.2,
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     inputCountry: {
         flex: 1,
         marginLeft: 1,
-        marginRight: 2,
+        marginRight: 1,
         backgroundColor: '#fff'
     },
 
@@ -258,8 +259,8 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        borderTopRightRadius: 25,
-        borderBottomRightRadius: 25,
+        borderTopRightRadius: 15,
+        borderBottomRightRadius: 15,
     }
 });
 
